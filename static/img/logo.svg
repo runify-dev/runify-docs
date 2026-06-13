@@ -1,0 +1,14 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="rg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6760E9"/>
+      <stop offset="1" stop-color="#4F46E5"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="8" fill="url(#rg)"/>
+  <!-- 三个节点 + 连线，呼应 DAG 工作流 -->
+  <circle cx="9" cy="10" r="3" fill="#fff"/>
+  <circle cx="23" cy="10" r="3" fill="#fff" fill-opacity="0.85"/>
+  <circle cx="16" cy="22" r="3" fill="#fff"/>
+  <path d="M9 10 L16 22 M23 10 L16 22" stroke="#fff" stroke-width="1.6" stroke-opacity="0.7"/>
+</svg>

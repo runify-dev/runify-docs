@@ -1,0 +1,15 @@
+{
+  "link.title.文档": { "message": "Docs" },
+  "link.title.社区": { "message": "Community" },
+  "link.title.更多": { "message": "More" },
+  "link.item.label.快速开始": { "message": "Quick Start" },
+  "link.item.label.工作流指南": { "message": "Workflow Guide" },
+  "link.item.label.API 参考": { "message": "API Reference" },
+  "link.item.label.Discussions": { "message": "Discussions" },
+  "link.item.label.Issues": { "message": "Issues" },
+  "link.item.label.GitHub": { "message": "GitHub" },
+  "link.item.label.Releases": { "message": "Releases" },
+  "copyright": {
+    "message": "Copyright © 2026 Runify. Apache-2.0 License."
+  }
+}
