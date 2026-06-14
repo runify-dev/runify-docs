@@ -28,6 +28,20 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: '功能手册',
+      collapsed: false,
+      items: [
+        'manual/overview',
+        'manual/application-management',
+        'manual/model-management',
+        'manual/knowledge-management',
+        'manual/skill-management',
+        'manual/datasource-management',
+        'manual/project-management',
+      ],
+    },
+    {
+      type: 'category',
       label: 'API 参考',
       items: [
         'api/overview',
