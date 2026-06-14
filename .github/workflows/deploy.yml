@@ -1,0 +1,43 @@
+name: Deploy to OSS
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+# 同一分支只保留最新一次运行，取消之前排队的
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to OSS
+        uses: manyuanrong/setup-ossutil@v3.0
+        with:
+          access-key-id: ${{ secrets.OSS_ACCESS_KEY_ID }}
+          access-key-secret: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
+          endpoint: oss-cn-beijing.aliyuncs.com
+
+      - name: Upload to OSS
+        run: |
+          ossutil cp -r build/ oss://runify/ --force --delete
