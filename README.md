@@ -103,13 +103,36 @@ npm run write-translations -- --locale en
 
 ## 部署
 
-`npm run build` 后把 `build/` 目录托管到任意静态服务（Vercel、Netlify、GitHub Pages、Nginx 等）。
+### 自动部署（推荐）
 
-部署前请在 `docusaurus.config.js` 中把 `url` / `baseUrl` 改成真实地址。GitHub Pages 可直接：
+项目已配置 GitHub Actions，push 到 `main` 分支后自动构建并部署到阿里云 OSS。
+
+**访问地址**: https://docs.runify.cn
+
+**配置 GitHub Secrets**（仓库 Settings → Secrets and variables → Actions）：
+
+| Secret 名称 | 说明 |
+|-------------|------|
+| `OSS_ACCESS_KEY_ID` | 阿里云 AccessKey ID |
+| `OSS_ACCESS_KEY_SECRET` | 阿里云 AccessKey Secret |
+
+**OSS 信息**（已写在 `.github/workflows/deploy.yml` 中）：
+- Bucket: `runify`
+- 区域: `cn-beijing`
+- 域名: `docs.runify.cn`
+
+### 手动部署
 
 ```bash
-npm run deploy
+npm run build    # 构建，产物在 build/
+# 然后用 ossutil 或控制台手动上传 build/ 目录
 ```
+
+### 其他方式
+
+`build/` 目录也可托管到 Vercel、Netlify、GitHub Pages、Nginx 等任意静态服务。
+
+部署前请在 `docusaurus.config.js` 中把 `url` / `baseUrl` 改成真实地址。
 
 ---
 
