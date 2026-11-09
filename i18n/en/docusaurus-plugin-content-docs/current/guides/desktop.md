@@ -1,44 +1,33 @@
 ---
 id: desktop
-title: 桌面端与多端适配
-sidebar_label: 桌面端
+title: Desktop and multi-platform
+sidebar_label: Desktop
 ---
 
-# 桌面端与多端适配
+# Desktop and multi-platform
 
-为了方便日常运维，Runify 前端针对不同屏幕尺寸做了专门优化，并提供原生桌面端。
+Runify works in a web browser and also comes as a native desktop application for macOS and Windows. This page explains how to install and use the desktop app, and what to consider as your team grows.
 
-## Web 响应式
+## Installing the desktop app
 
-前端采用原子化样式（Tailwind CSS）开发，界面布局灵活自适应。即便在手机端，也能流畅处理 Agent 的人机审批等操作。
+1. Download the Runify installer for your system — the **macOS** version for a Mac or the **Windows** version for a PC.
+2. Double-click the installer and follow the on-screen prompts.
+3. Launch Runify and sign in with the default account **admin / Runify@1** (change the password after your first sign-in).
 
-## 桌面端（Electron）
+Full step-by-step instructions are in [Installation](/getting-started/installation).
 
-支持一键打包为原生桌面应用，为 macOS 与 Windows 用户提供低延迟的单窗口管理环境。
+## Using it day to day
 
-### 打包命令
+The desktop app gives you a single, focused window for building and running assistants, with no browser tabs to manage. The layout also adapts to different screen sizes, so you can review and approve an assistant's requests even from a phone when you are away from your desk.
 
-```bash
-# macOS
-./installer/installer.sh mac
+## Where your files live
 
-# Windows
-./installer/installer.sh win
-```
+Runify keeps everything it needs — your applications, knowledge bases, documents and conversations — together on the computer where it is installed. You do not have to choose a location or manage any folders yourself; files are kept in the app's own data area and are available each time you open it. Back up this computer if you want to keep a copy of your work.
 
-### macOS 首次启动
+## One installation is usually enough
 
-若提示「无法打开，因为无法验证开发者」，执行：
+For an individual or a small team, a single installation of Runify is all you need — it comfortably handles everyday use on an ordinary laptop.
 
-```bash
-xattr -cr /Applications/Runify.app
-```
+## Growing to more users
 
-详细安装步骤见 [安装](../getting-started/installation.md)。
-
-## 适配总览
-
-| 终端 | 技术 | 特点 |
-| --- | --- | --- |
-| Web | Tailwind CSS 响应式 | 自适应布局，手机端可用 |
-| 桌面 | Electron | macOS / Windows 原生，低延迟单窗口 |
+If many people use the assistants at once and you need higher throughput, an IT administrator can run the server edition on a server and let everyone connect from their own computer. This keeps one shared place for your data while spreading the work across more powerful hardware.

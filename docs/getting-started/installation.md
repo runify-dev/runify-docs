@@ -6,66 +6,31 @@ sidebar_label: 安装
 
 # 安装
 
-Runify 提供两种获取方式：从源码构建（适合开发者）或下载桌面安装包（适合直接使用）。
+Runify 提供两种使用方式：桌面安装包（开箱即用，推荐），以及供多人共同使用的服务器版本。普通用户只需安装桌面软件即可开始使用。
 
-## 环境要求
+## 桌面安装包（推荐）
 
-开发或源码构建需要：
+1. 根据你的电脑系统，下载对应的安装包：
+   - macOS：下载 macOS 版安装包
+   - Windows：下载 Windows 版安装包
+2. 双击安装包，按安装向导提示完成安装。
+3. 从应用程序列表启动 Runify。
+4. 用默认账号登录：
+   - 用户名：admin
+   - 密码：Runify@1
 
-- **JDK 25+**
-- **Node.js 20+**
-- **Maven 3.8+**
-
-桌面端用户无需上述环境，直接下载对应平台的安装包即可。
-
-## 方式一：下载桌面安装包
-
-前往 [Releases](https://github.com/runify-dev/runify/releases) 页面下载最新版本（当前为 `v0.1.0-beta`），支持 macOS 与 Windows。
-
-### macOS 首次启动
-
-首次打开 macOS 安装包时，系统可能提示「无法打开，因为无法验证开发者」。在终端执行以下命令移除隔离属性：
-
-```bash
-xattr -cr /Applications/Runify.app
-```
-
-之后即可正常启动。默认登录凭据：
-
-```
-用户名: admin
-密码: Runify@1
-```
+:::info 首次启动
+macOS 首次打开时，系统可能提示「无法打开，因为无法验证开发者」。此时可在「系统设置 → 隐私与安全性」中允许打开，之后即可正常使用。
+:::
 
 :::warning 安全提示
 首次登录后请立即修改默认密码，尤其是在多人或联网环境中。
 :::
 
-## 方式二：从源码构建
+## 多人共用的服务器版本
 
-克隆仓库：
-
-```bash
-git clone https://github.com/runify-dev/runify.git
-cd runify
-```
-
-构建 JAR 包并启动：
-
-```bash
-# 一键构建发布版 JAR
-./installer/build-jar.sh
-java -jar release/runify.jar
-```
-
-打包桌面应用：
-
-```bash
-# mac 或 win
-./installer/installer.sh mac
-./installer/installer.sh win
-```
+如果需要在服务器上供多人共同使用，由 IT 管理员在服务器上安装好服务端即可，普通用户通过浏览器访问使用，无需在本机安装任何软件。
 
 ## 下一步
 
-环境就绪后，进入 [快速开始](./quick-start.md) 跑通你的第一个 Agent。
+安装完成后，进入 [快速开始](/getting-started/quick-start) 跑通你的第一个智能体；更多系统级设置见 [配置](/getting-started/configuration)。

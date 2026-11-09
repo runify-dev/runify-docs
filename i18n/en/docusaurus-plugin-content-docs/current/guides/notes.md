@@ -1,36 +1,46 @@
 ---
 id: notes
-title: 智能笔记
-sidebar_label: 智能笔记
+title: Knowledge base and documents
+sidebar_label: Knowledge base and documents
 ---
 
-# 智能笔记
+# Knowledge base and documents
 
-Runify 集成了现代化的富文本编辑器，方便你在打磨 Agent 的同时，随时随地沉淀知识与灵感。笔记不仅是你的私人知识库，更是 Agent 的上下文来源。
+The **Knowledge** feature is where you collect the reference material you want your assistants to use — a product handbook, company policies, FAQs, or any other documents. An assistant can look up relevant passages while it answers, so its replies are grounded in your own information rather than guesswork.
 
-## 核心能力
+## Building a knowledge base
 
-- **多要素渲染**：完美支持标准 Markdown 语法、代码块高亮、数学公式以及图表多媒体混排，提供所见即所得的丝滑编辑体验。
-- **无感自动保存**：内置实时全自动保存机制。无论断网、误触关闭还是设备意外断电，平台都会在后台实时暂存你的每一行输入，彻底告别内容丢失的焦虑。
-- **理清设计思路**：它不仅是 Agent 的上下文来源，更是你私人的轻量级知识库。
+You can add content in two ways:
 
-## 笔记与 Agent 的关系
+- **Import files** — bring in **PDF**, **DOC**, **DOCX** or **ZIP** files. A ZIP file is unpacked into several documents, keeping its folder structure.
+- **Write in the editor** — create documents directly with the built-in rich-text editor, which supports headings, formatting, tables, images, math formulas and more.
 
-笔记的价值不止于记录。借助工作流中的**笔记检索**节点，Agent 可以检索笔记内容并精准召回，把你沉淀的知识直接用进推理过程。
+Everything is saved automatically as you work, so an interrupted session never loses content.
 
-典型用法：
+## Searching your documents
 
-1. 在笔记中整理产品规则、业务术语、常见问答。
-2. 在工作流里加入「笔记检索」节点。
-3. Agent 运行时自动从笔记中召回相关内容，生成更贴合你业务的回答。
+Runify includes **built-in full-text search** across your knowledge base, so there is nothing extra to install or set up. Once documents are in place, an assistant can find the passages that match a question and use them to shape its answer.
 
-## 编辑体验
+## Using knowledge in a workflow
 
-编辑器支持：
+1. Gather your rules, terminology and FAQs into a knowledge base.
+2. Add the **Knowledge search** block to your workflow.
+3. When the flow runs, the assistant recalls the matching passages and answers from your documents.
 
-- 标准 Markdown 语法
-- 代码块语法高亮
-- 数学公式
-- 图表与多媒体混排
+Deleting a knowledge base also removes its documents and their search entries, so nothing is left behind.
 
-所有内容实时自动保存，无需手动操作。
+## Knowledge vs context management
+
+Two features sound similar but do different jobs:
+
+| | Knowledge base | Context management |
+| --- | --- | --- |
+| What it holds | The documents you curate and import | Notes and summaries from the conversation |
+| How it is used | An assistant searches it for facts about your business | The assistant condenses earlier messages and saves important facts as notes |
+| How long it lasts | Persistent — you maintain it over time | Lives across the turns of a conversation |
+
+In short: **knowledge** is your lasting library of documents; **context** is the assistant's working memory for the conversation in progress. See [Workflow Nodes](/guides/nodes) for where each block sits in the palette.
+
+## The chat page
+
+End users talk to a published assistant through a clean, dedicated chat page. You can also place that chat inside your own website or internal system, so people can use it where they already work.

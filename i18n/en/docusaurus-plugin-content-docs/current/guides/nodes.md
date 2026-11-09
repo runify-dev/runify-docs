@@ -1,62 +1,85 @@
 ---
 id: nodes
-title: 节点详解
-sidebar_label: 节点详解
+title: Workflow Nodes
+sidebar_label: Workflow Nodes
 ---
 
-# 节点详解
+# Workflow Nodes
 
-工作流由节点组合而成。通过可视化编辑器，拖拽节点即可构建专属 Agent。下面是 Runify 内置的核心节点类型。
+Workflows are composed of nodes — the ready-made blocks you drag onto the canvas to build an AI assistant. Runify provides **36 node types**, arranged in the palette into five groups. The tables below list each one by its plain name and what it does.
 
-## 节点总览
+## AI (3)
 
-| 节点类型 | 说明 |
+| Node | Purpose |
 | --- | --- |
-| **AI 对话** | 多模型接入，支持思维链、工具调用 |
-| **条件判断** | 根据变量 / AI 输出走不同分支 |
-| **循环** | 批量处理、迭代优化 |
-| **数据库查询** | 直连数据源，Agent 自主检索 |
-| **笔记检索** | Agent 可检索笔记内容，精准召回 |
-| **代码执行** | JavaScript / 终端，Agent 可编程 |
-| **文件操作** | 读写文件、上传下载 |
-| **变量赋值** | 流程状态管理 |
-| **缓存读写** | 避免重复计算 |
-| **HTTP 请求** | 工作流驱动，调用外部 API / Webhook |
-| **审批节点** | 人机协作，关键步骤人工确认 |
+| AI chat | The assistant's reasoning core — understands the conversation, writes replies and decides which tools to use |
+| Context compression | Condenses a long conversation so earlier details are not lost |
+| Extract notes | Pulls important facts out of the conversation and saves them as notes |
 
-## 分类说明
+## AI tools (12)
 
-### 智能类
+| Node | Purpose |
+| --- | --- |
+| Create file | Makes a new file as part of the flow |
+| Read file | Opens a file so the assistant can use its contents |
+| List folder | Shows the files inside a folder |
+| Find files | Locates files whose names match a pattern |
+| Search in files | Looks for text inside files |
+| Apply file changes | Updates files with a set of edits |
+| Upload file | Brings a file into the flow |
+| Download file | Saves a file out of the flow |
+| Custom action | Carries out a custom action on the computer on the assistant's behalf |
+| List Skills | Shows the Skills available to the assistant |
+| Download Skills | Adds new Skills from the Skill store |
+| Run a Skill | Carries out a chosen Skill |
 
-- **AI 对话**：Agent 的大脑。支持多模型接入，可开启思维链推理，并在对话中触发工具调用。
-- **笔记检索**：从智能笔记库中精准召回相关内容，作为上下文喂给 AI。
+## Data (5)
 
-### 控制流类
+| Node | Purpose |
+| --- | --- |
+| Database query | Looks up information in a connected business data source |
+| Database write | Adds or updates records in a connected business data source |
+| Read cached value | Retrieves a stored result so it can be reused |
+| Write cached value | Stores a result for later reuse |
+| Knowledge search | Finds relevant content in your knowledge base |
 
-- **条件判断**：依据变量值或 AI 输出选择分支，是构建有判断力 Agent 的关键。
-- **循环**：对批量数据迭代处理，或对结果反复优化直到满足条件。
-- **变量赋值**：管理流程中的状态，在节点间传递数据。
-- **审批节点**：在流程关键点暂停，等待人工确认后再继续。
+## Control flow (6)
 
-### 工具类
+| Node | Purpose |
+| --- | --- |
+| Start | The entry point where every flow begins |
+| Condition | Chooses a branch based on a value or the assistant's answer |
+| Loop | Repeats a set of steps for each item in a list or until a condition is met |
+| Loop start | Marks the beginning of the steps to be repeated |
+| Continue loop | Moves on to the next repetition |
+| Break loop | Stops repeating early |
 
-- **数据库查询**：让 Agent 直连已配置的数据源主动检索。
-- **代码执行**：运行 JavaScript 或终端命令，赋予 Agent 编程能力。
-- **文件操作**：读写文件、处理上传下载。
-- **缓存读写**：缓存中间结果，避免重复计算、节省开销。
-- **HTTP 请求**：调用外部 API 或 Webhook，把工作流接入更广的系统。
+## Tools (10)
 
-## 组合建议
+| Node | Purpose |
+| --- | --- |
+| Custom logic | Handles special calculations or formatting you define yourself |
+| Extract fields | Pulls structured information out of a piece of text |
+| Set a value | Stores data and passes it between steps |
+| Send response | Produces the answer the flow returns |
+| Add to context | Places content into the assistant's working memory |
+| Read context | Looks up stored working memory |
+| Save context | Stores working memory for later turns |
+| Current user | Reads who is using the assistant |
+| Call a Tool | Runs a registered Tool or a connected service |
+| Approval | Pauses for a person to confirm before continuing |
 
-典型的 Agent 往往是这些节点的组合，例如：
+:::tip Reaching outside services
+To connect an assistant to an outside service, use the **Call a Tool** block (which runs a registered Tool) or add a third-party integration from System settings.
+:::
 
-```
-AI 对话（理解意图）
-  → 条件判断（是否需要查数据）
-    → 数据库查询 → AI 对话（基于结果回答）
-    → HTTP 请求（调用外部服务）
-  → 审批节点（人工确认）
-  → 文件操作（输出结果）
-```
+## Two things that are easy to confuse
 
-每个节点的具体参数字段，见 [API 参考 · 节点参考](../api/nodes-reference.md)。
+- **Knowledge search** looks up information in the documents you imported into a knowledge base — your own reference library.
+- **Context management** looks after the running conversation: it condenses earlier messages, saves important facts as notes and recalls them in later turns.
+
+The two work independently: one is about your documents, the other about the live conversation. See [Knowledge base and documents](/guides/notes) for more on the difference.
+
+## Combining blocks
+
+A typical assistant mixes several groups. For example, it might start by receiving a question, decide whether a data lookup is needed, query a business database or call a connected service, have the AI write an answer from the result, pause for a person's approval on sensitive steps, and finally produce a reply or a file. You build this simply by connecting the blocks in that order on the canvas.

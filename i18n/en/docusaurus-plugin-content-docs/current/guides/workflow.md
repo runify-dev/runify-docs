@@ -1,46 +1,50 @@
 ---
 id: workflow
-title: 工作流引擎
-sidebar_label: 工作流引擎
+title: Workflow Engine
+sidebar_label: Workflow Engine
 ---
 
-# 工作流引擎
+# Workflow Engine
 
-Runify 的核心是一套**可视化工作流引擎**。你通过直观的拖拽式画布，像搭积木一样自由组合、串联核心节点，构建专属 Agent。
+At the heart of Runify is a **visual canvas**. Instead of writing a program, you build an AI assistant by dragging ready-made blocks onto the canvas, connecting them in the order they should run, and filling in a few settings. This page explains how the canvas works.
 
-## 为什么是 DAG，而不是 BPMN
+## A clear, easy-to-read flow
 
-Runify 摒弃了复杂的 BPMN 规范，采用更符合开发者直觉的 **DAG（有向无环图）执行引擎**：
+Runify uses a simple flow where blocks are connected in the order they should run. There are no tangled loops drawn on the main canvas, so the sequence of steps is always clear at a glance — even if you have never built a workflow before.
 
-- 节点之间以有向边连接，数据顺着边流动
-- 没有循环歧义，执行顺序清晰可预测
-- 学习成本低，看一眼画布就能理解流程走向
+## Main canvas and loop sub-canvases
 
-## 白盒执行
+Most of your work happens on the **main canvas**. When you need the assistant to repeat a set of steps — for example, to work through a list of items one by one — you place a **loop** on the main canvas. The steps to be repeated live on their own separate **loop sub-canvas**, which you open by double-clicking the loop. Inside it you can add blocks that move on to the next item or stop the repetition early. Keeping repeating steps on their own canvas keeps the main flow clean and easy to follow.
 
-这是 Runify 与多数 Agent 框架最大的不同：**执行过程完全透明**。
+## See exactly what is happening
 
-运行工作流时，画布会实时展示：
+This is the biggest difference from most AI tools: nothing is hidden. While a workflow runs, the canvas shows in real time:
 
-- 每个节点的执行状态（等待 / 运行 / 完成 / 失败）
-- 每一次推理的输入与输出
-- 每一次工具调用的参数与结果
-- 流程在条件节点上走了哪个分支
+- Each block's status — waiting, running, finished or failed.
+- What went into and came out of every step.
+- The results of any tool the assistant used.
+- Which way a decision went at a branching point.
 
-所有这些都是**可编辑、可调试**的——你可以暂停、修改、重跑，把确定性重新交还到自己手里。
+You can pause, change a setting and run it again until you get the result you want. Nothing is left to guesswork.
 
-## 构建流程的基本步骤
+## Building a workflow
 
-1. 新建一个工作流。
-2. 从节点面板拖入所需节点到画布。
-3. 用连线把节点按执行顺序串起来。
-4. 逐个配置节点参数（模型、条件、变量等）。
-5. 运行并观察画布上的执行轨迹，按需调试。
+1. Create a new workflow.
+2. Drag the blocks you need from the palette on the left onto the canvas.
+3. Connect them in the order they should run.
+4. Configure each block — choose the model, set conditions, fill in the instruction text, and so on.
+5. Run the flow and watch the trace, then adjust anything that did not behave as expected.
 
-## 节点类型
+If you would rather not start from scratch, you can describe what you want in plain language and let Runify draft the flow for you; you can then refine that draft on the canvas.
 
-工作流由多种节点组合而成，完整列表见 [节点详解](./nodes.md)。常用的包括 AI 对话、条件判断、循环、数据库查询、代码执行、HTTP 请求、审批节点等。
+## The building blocks
 
-## 人机协作
+Workflows are built from **36 node types**, arranged in the palette into five groups: **AI**, **AI tools**, **Data**, **Control flow** and **Tools**. Everyday examples include AI chat, condition, loop, database query, approval and knowledge search. To reach an outside service, use the block that calls a registered Tool, or connect a third-party integration. The full list is in [Workflow Nodes](/guides/nodes).
 
-通过**审批节点**，你可以在关键步骤插入人工确认环节，让 Agent 在执行到敏感操作前停下来等你拍板——既保留自动化效率，又守住可控性。
+## Human-in-the-loop
+
+With the **approval** block you can insert a human confirmation step at a critical point. The assistant then pauses and waits for a person to approve before continuing, so sensitive actions stay under your control without giving up automation.
+
+## Publishing and versions
+
+When a workflow is ready, **publish** it to make it available to end users. Runify keeps a history of published versions, and each published version is fixed, so you can confidently move forward or roll back to an earlier one.

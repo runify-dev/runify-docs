@@ -1,42 +1,35 @@
 ---
 id: configuration
-title: 配置
-sidebar_label: 配置
+title: Configuration
+sidebar_label: Configuration
 ---
 
-# 配置
+# Configuration
 
-Runify 的设计目标之一是**配置零门槛**：默认开箱即用，但也支持在生产环境按需调整。
+Nearly everything in Runify is managed from one place: the **System settings** screen. Sensible defaults are already applied when you install Runify, so there is nothing to set up before you start — you only need to change a setting when you want to.
 
-## 数据库
+## Model keys
 
-系统底层支持两种数据库：
+In **System settings**, open **Model access** to enter the keys that let Runify talk to your AI model provider. The following providers are supported:
 
-| 数据库 | 适用场景 | 说明 |
-| --- | --- | --- |
-| **SQLite** | 默认 / 本地开发 | 极简本地文件存储，零配置 |
-| **PostgreSQL** | 生产 / 协同 | 一键切换，适合多人与持久化场景 |
+- **OpenAI**
+- **Deepseek**
+- **Mimo**
 
-切换到 PostgreSQL 后，系统通过 Flyway 管理数据库迁移，首次启动会自动初始化表结构。
+Add the key for the provider you use and save it. Your assistants can then use that model to understand questions and write replies.
 
-## 搜索与检索
+## Where your data is stored
 
-Runify 内置 **Lucene** 检索，无需额外部署搜索集群即可支持智能笔记与知识召回。规模较大时也可对接 **Elasticsearch**。
+By default, everything Runify keeps — your applications, knowledge bases, documents and conversations — is stored locally on the computer running Runify, with no extra setup required. If your organization would rather keep this information in a central, company-managed database, an administrator can switch to a corporate database from **System settings**.
 
-## 多数据源
+## Sign-in and security
 
-除系统自身存储外，Runify 提供独立的**数据源配置管理**，让 Agent 具备理解你私有业务数据的能力：
+In **System settings**, open **Sign-in & security** to change the default **admin** password, manage users and decide who is allowed to view, edit or publish each resource. Roles make it easy to give people only the access they need.
 
-- **SQL 数据库**：适配 PostgreSQL、MySQL，支持连接测试与动态驱动管理。
-- **缓存供应商**：支持 Redis 集群 / 单机版，也提供零依赖的本地缓存方案。
+## Third-party credentials
 
-详见 [多数据源指南](../guides/datasources.md)。
+Runify can connect to the workplace and messaging tools your team already uses. In **System settings**, open **Integrations** to add the credentials for the services you want to connect, such as WeCom, Feishu, DingTalk, WeChat Official Accounts and personal WeChat accounts. Once connected, these services can start or receive conversations with your assistants.
 
-## 硬件参考
+## Related guides
 
-Runify 对硬件要求极低：
-
-- 一台普通个人电脑（Mac / Windows），或
-- 入门级云服务器（**1 核 2G**）
-
-即可流畅跑满本地流式响应。
+- [Data Sources](/guides/datasources) — connect the business databases you want your assistants to query.

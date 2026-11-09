@@ -40,15 +40,6 @@ const sidebars = {
         'manual/project-management',
       ],
     },
-    {
-      type: 'category',
-      label: 'API 参考',
-      items: [
-        'api/overview',
-        'api/nodes-reference',
-        'api/http-api',
-      ],
-    },
   ],
 };
 

@@ -19,7 +19,11 @@ const config = {
   projectName: 'runify',
 
   onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'warn',
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
+  },
 
   // ---- 国际化：默认中文，可切换英文 ----
   i18n: {
@@ -43,15 +47,7 @@ const config = {
           // 指向仓库，文档页底部会出现「编辑此页」
           editUrl:
             'https://github.com/runify-dev/runify/tree/main/website/',
-          // ---- 多版本配置 ----
-          // 已发布版本（versioned_docs/）自动成为默认版本。
-          // current 作为「开发中 / 下一版」，路径前缀 /next
-          versions: {
-            current: {
-              label: 'Next 🚧',
-              path: 'next',
-            },
-          },
+          // 单版本文档：只维护 docs/ 当前内容，不再切版本快照
         },
         blog: false, // 暂不需要博客，如需开启改为对象配置
         theme: {
@@ -84,10 +80,6 @@ const config = {
             label: '文档',
           },
           {
-            type: 'docsVersionDropdown',
-            position: 'right',
-          },
-          {
             type: 'localeDropdown',
             position: 'right',
           },
@@ -106,7 +98,7 @@ const config = {
             items: [
               {label: '快速开始', to: '/getting-started/quick-start'},
               {label: '工作流指南', to: '/guides/workflow'},
-              {label: 'API 参考', to: '/api/overview'},
+              {label: '功能手册', to: '/manual/overview'},
             ],
           },
           {

@@ -4,7 +4,7 @@
   "link.title.更多": { "message": "More" },
   "link.item.label.快速开始": { "message": "Quick Start" },
   "link.item.label.工作流指南": { "message": "Workflow Guide" },
-  "link.item.label.API 参考": { "message": "API Reference" },
+  "link.item.label.功能手册": { "message": "Feature Manual" },
   "link.item.label.Discussions": { "message": "Discussions" },
   "link.item.label.Issues": { "message": "Issues" },
   "link.item.label.GitHub": { "message": "GitHub" },

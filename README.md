@@ -1,8 +1,8 @@
 # Runify 文档站
 
-[Runify](https://github.com/runify-dev/runify)（轻量级白盒 AI Agent 平台）的官方文档站，基于 [Docusaurus 3](https://docusaurus.io/) 构建。
+[Runify](https://github.com/runify-dev/runify)（轻量白盒多智能体平台）的官方文档站，基于 [Docusaurus 3](https://docusaurus.io/) 构建。
 
-已预置：上手教程 · API 参考 · 多版本（`0.1.0-beta` + `Next`）· 中英双语。
+已预置：上手教程 · 使用指南 · 功能手册 · 中英双语。**只维护一个文档版本**，`docs/` 即当前唯一版本，不做版本快照。
 
 > 本站不含独立的产品介绍首页（你已有官网首页），站点**根路径直接进入文档**。
 
@@ -23,13 +23,15 @@ npm start        # 启动中文站，默认 http://localhost:3000
 npm run start:en
 ```
 
-> 注意：`npm start` 单语言预览模式下，右上角语言下拉不可点（这是 Docusaurus 的限制）。要同时验证中英双语，请用 `npm run build && npm run serve`。
+> 注意：Runify 前端管理端的 Vite 开发服务器也占用 3000 端口。同时调试时给文档站换个端口：`npm start -- --port 3002`。
+
+> `npm start` 单语言预览模式下，右上角语言下拉不可点（这是 Docusaurus 的限制）。要同时验证中英双语，请用 `npm run build && npm run serve`。
 
 构建生产版本：
 
 ```bash
 npm run build    # 产物在 build/
-npm run serve    # 本地预览构建产物（含完整多语言、多版本）
+npm run serve    # 本地预览构建产物（含完整多语言）
 ```
 
 ---
@@ -38,21 +40,16 @@ npm run serve    # 本地预览构建产物（含完整多语言、多版本）
 
 ```
 runify-docs/
-├── docs/                       # 当前开发版（Next）文档源
-│   ├── intro.md
+├── docs/                       # 唯一的文档源（当前版本）
+│   ├── intro.md                # 站点根路径
 │   ├── getting-started/        # 安装、快速开始、配置
-│   ├── guides/                 # 工作流、节点、笔记、数据源、桌面端
-│   └── api/                    # API 总览、节点参考、HTTP 接口
-├── versioned_docs/             # 已发布版本快照（0.1.0-beta）
-├── versioned_sidebars/
-├── versions.json               # 已发布版本清单
+│   ├── guides/                 # 工作流、节点、知识库、数据源、桌面端
+│   └── manual/                 # 功能手册（应用、模型、知识库、技能、数据源、项目）
 ├── i18n/en/                    # 英文翻译
-│   ├── code.json               # 首页等界面文案
-│   ├── docusaurus-theme-classic/   # 导航、页脚
-│   └── docusaurus-plugin-content-docs/  # 英文文档
-├── src/
-│   └── css/custom.css          # 品牌色与全局样式
-├── static/img/                 # logo、favicon
+│   ├── docusaurus-theme-classic/       # 导航、页脚
+│   └── docusaurus-plugin-content-docs/current/   # 英文文档
+├── src/css/custom.css          # 品牌色与全局样式
+├── static/img/                 # logo、favicon、手册截图
 ├── docusaurus.config.js        # 主配置
 └── sidebars.js                 # 侧边栏
 ```
@@ -63,41 +60,19 @@ runify-docs/
 
 ### 改文档
 
-编辑 `docs/` 下的 Markdown 即可，保存后热更新。`docs/` 对应「Next（开发中）」版本。
+编辑 `docs/` 下的 Markdown 即可，保存后热更新；英文对应改 `i18n/en/docusaurus-plugin-content-docs/current/` 下的同名文件。新增或删除页面时同步维护 `sidebars.js`。
 
-### 发布一个新版本
+### 内容定位
 
-把当前 `docs/` 冻结为一个新版本快照：
-
-```bash
-npm run version:cut 0.2.0
-```
-
-会自动生成 `versioned_docs/version-0.2.0/`、对应侧边栏，并更新 `versions.json`。
+文档是**给普通用户看的产品使用手册**：只讲界面操作与使用流程，不出现命令、文件路径、接口、配置项、技术栈版本号等面向开发者的内容。新增章节时请沿用这个口径。
 
 ### 补全英文翻译
 
-界面文案已译。文档内容里，目前仅 `intro` 翻译为英文，其余英文页为中文占位待译，位于：
-
-```
-i18n/en/docusaurus-plugin-content-docs/current/      # Next 版英文
-i18n/en/docusaurus-plugin-content-docs/version-0.1.0-beta/   # 已发布版英文
-```
-
-逐篇翻译替换即可。若新增了界面文案，运行下面命令生成待译条目：
+界面文案已译，文档正文 9 篇已同步。若新增界面文案，运行下面命令生成待译条目：
 
 ```bash
 npm run write-translations -- --locale en
 ```
-
-### 补全 API 参考（推荐自动生成）
-
-`docs/api/` 目前是基于仓库结构整理的骨架。Runify 后端是 Java + Vert.x，建议让接口文档跟着代码走：
-
-1. 后端集成 OpenAPI，导出 `openapi.json`。
-2. 安装并配置 [`docusaurus-plugin-openapi-docs`](https://github.com/PaloAltoNetworks/docusaurus-openapi-docs)，把 `openapi.json` 渲染成交互式 API 页面。
-
-这样接口文档会随代码自动更新，避免手写漂移。
 
 ---
 

@@ -1,56 +1,30 @@
 ---
 id: quick-start
-title: 快速开始
-sidebar_label: 快速开始
+title: Quick Start
+sidebar_label: Quick Start
 ---
 
-# 快速开始
+# Quick Start
 
-本页带你以**开发模式**启动 Runify，并跑通第一个最简单的 Agent。
+This guide walks you through building your first AI assistant in Runify, from signing in to opening the finished chat page. Everything is done through the on-screen interface; the only thing you need beforehand is a working [Installation](/getting-started/installation). Runify typically starts in 12 seconds and uses 100MB–200MB of memory while running, so it feels light even on an everyday laptop.
 
-## 启动开发环境
+## Build your first assistant
 
-Runify 前后端分离，开发时需要分别启动。
+1. **Sign in.** Launch Runify and sign in with the default account **admin / Runify@1** (you can change the password later in System settings).
+2. **Configure a model.** In **System settings**, open **Model access** and add the key for your model provider — OpenAI, Deepseek or Mimo — then save. This is what gives your assistant the ability to understand and write.
+3. **Create a knowledge base.** Open the **Knowledge** section, create a knowledge base and import a few documents (PDF, DOC, DOCX or ZIP). Your assistant will be able to look things up in them later.
+4. **Create an application.** Go to **Applications**, choose **Create**, and pick one of the built-in templates as a starting point instead of starting from a blank canvas.
+5. **Arrange the flow.** On the visual canvas, drag in the blocks you need, connect them in the order they should run, and fill in each block's settings — for example, choose the model and write the instruction that tells the assistant what to do.
+6. **Test the chat.** Use the built-in test chat to talk to your assistant and watch each step light up on the canvas, so you can see exactly what it is doing and fix anything that looks wrong.
+7. **Publish.** When you are happy with the result, click **Publish** to make the application available to end users.
+8. **Open the chat page.** Open the published chat page and start a real conversation with your assistant.
 
-### 启动后端
+:::tip
+Starting from a built-in template is the fastest way to see a working assistant. You can change any part of it afterwards.
+:::
 
-```bash
-# 在项目根目录
-mvn clean package -DskipTests
-java -jar backend/target/backend.jar
-```
+## Where to go next
 
-后端基于 Vert.x，启动通常在 1~2 秒内完成，基础运行时内存占用保持在 100MB~200MB。
-
-### 启动前端
-
-另开一个终端：
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-前端启动后，浏览器访问终端提示的本地地址（默认 Vite 端口），用默认账号 `admin` / `Runify@1` 登录。
-
-## 数据存储说明
-
-Runify 默认使用 **SQLite** 本地文件存储，零配置即可运行。无需额外部署数据库，也内置了 Lucene 检索，不必拉起独立搜索集群。
-
-生产环境若需要，可一键切换至 PostgreSQL，详见 [配置](./configuration.md)。
-
-## 创建第一个 Agent
-
-1. 登录后进入**工作流编辑器**。
-2. 从左侧节点面板拖入一个 **AI 对话** 节点，连接到流程起点。
-3. 在节点配置中选择一个已接入的模型，填写提示词。
-4. 点击运行，观察画布上每个节点的执行状态与输出——这正是 Runify「白盒」的体现：每一步推理你都看得见。
-
-想了解全部节点类型和画布玩法，继续阅读 [工作流指南](../guides/workflow.md) 与 [节点详解](../guides/nodes.md)。
-
-## 常见问题
-
-**端口被占用？** 修改前端 Vite 配置或后端启动参数中的端口。
-
-**模型调不通？** 确认已在「模型接入」中正确配置 API Key 与 Base URL，AI 对话节点支持多模型接入。
+- Learn how the canvas works in the [Workflow Guide](/guides/workflow).
+- See every available building block in [Workflow Nodes](/guides/nodes).
+- Fine-tune keys, storage and sign-in options in [Configuration](/getting-started/configuration).

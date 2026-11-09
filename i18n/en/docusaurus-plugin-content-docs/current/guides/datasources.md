@@ -1,42 +1,37 @@
 ---
 id: datasources
-title: 多数据源
-sidebar_label: 多数据源
+title: Data Sources
+sidebar_label: Data Sources
 ---
 
-# 多数据源
+# Data Sources
 
-Runify 提供独立的数据源配置管理，支持一键连接并托管你的外部业务环境，让 Agent 真正具备理解你私有业务数据的能力。
+A **data source** is a connection to a database your business already uses. Adding one lets an assistant look up real business information — orders, customers, inventory and so on — instead of only chatting from general knowledge.
 
-## 支持的数据源
+## Adding a data source
 
-### SQL 数据库
+1. Open the **Data Sources** page from the main menu.
+2. Choose **Create** and pick the type you want to connect, such as **PostgreSQL** or **MySQL** for a business database, or **Redis** for a fast cache.
+3. Fill in the connection details your IT team gives you.
+4. Click **Test connection** to confirm Runify can reach it. If the test passes, save the data source.
 
-完美适配 **PostgreSQL**、**MySQL**，支持：
+:::tip
+If the test fails, double-check the address and account details with your IT team — a typo in these is the most common cause.
+:::
 
-- 连接测试
-- 动态驱动管理
+## Browsing your data
 
-配置后，工作流中的「数据库查询」节点即可让 Agent 直连数据源主动检索。
+Once a data source is connected, you can browse it right inside Runify: open the data source to see its **tables**, and open a table to see its **columns** and sample rows. This lets you confirm you reached the right place and understand what information is available before you build a workflow.
 
-### 缓存供应商
+## Using a data source in a workflow
 
-支持高性能的 **Redis** 集群或单机版，同时提供**零依赖的本地缓存方案**。
+With a data source saved, add the relevant blocks to a workflow:
 
-配合工作流中的「缓存读写」节点，可以缓存中间结果、避免重复计算。
+- **Database query / write** — look up information or add records in a connected business database.
+- **Cache read / write** — store and reuse intermediate results, so repeated questions are answered faster.
 
-## 配置流程
+The assistant then works with your live business data, turning it from a chat-only tool into one that actually knows your business. See [Workflow Nodes](/guides/nodes) for the full list of data blocks.
 
-1. 进入数据源配置管理页面。
-2. 新建数据源，选择类型（PostgreSQL / MySQL / Redis / 本地缓存）。
-3. 填写连接信息，点击连接测试确认可用。
-4. 保存后即可在工作流节点中引用该数据源。
+## Next steps
 
-## 与 Agent 协作
-
-数据源让 Agent 从「只会聊天」升级为「懂你业务」：
-
-- **数据库查询节点** → Agent 自主检索业务数据
-- **缓存读写节点** → 复用结果、降低开销
-
-详见 [节点详解](./nodes.md) 中的工具类节点。
+- Adjust storage and sign-in options in [Configuration](/getting-started/configuration).
